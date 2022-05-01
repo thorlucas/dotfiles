@@ -1,0 +1,13 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+
+brew "yadm"
+brew "zsh-syntax-highlighting"
+brew "neovim", args: ["HEAD"]
+
+cask "font-iosevka"
+cask "iterm2"
+
+cask "obsidian"

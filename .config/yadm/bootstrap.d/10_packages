@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+echo "Bootstrapping packages..."
+
+# Install Homebrew if it's missing
+if ! command -v brew >/dev/null 2>&1; then
+	echo "Installing Homebrew..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if [ -f "$HOMEBREW_BUNDLE_FILE" ]; then
+	echo "Updating Homebrew bundle..."
+	brew bundle
+else
+	echo "No Brewfile found!"
+fi
+

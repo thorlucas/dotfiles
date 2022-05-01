@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+echo "Bootstrapping environment..."
+
+if [ ! "$ZDOTDIR" = "$HOME/.config/zsh" ]; then
+	sudo zsh -c 'echo "export ZDOTDIR=\"\$HOME/.config/zsh\"" >> /etc/zshenv'
+	echo "Updated /etc/zshenv!"
+
+	zsh
+fi

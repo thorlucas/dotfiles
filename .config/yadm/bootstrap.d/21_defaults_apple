@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Dock
+echo "	Dock..."
+defaults write com.apple.dock "autohide" 	-bool 	"true"
+defaults write com.apple.dock "orientation" 	-string "bottom"
+defaults write com.apple.dock "show-recents" 	-bool 	"false"
+killall Dock
+
+# Menu Bar
+echo "	Menu Bar..."
+defaults write NSGlobalDomain "_HIHideMenuBar" 	-bool 	"true"
+killall Finder

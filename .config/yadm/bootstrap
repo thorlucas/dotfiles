@@ -1,14 +1,20 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-system_type=$(uname -s)
+set -eu
 
-if [ "$system_type" = "Darwin" ]; then
-	# install homebrew if it's missing
-	if ! command -v brew >/dev/null 2>&1; then
-		echo "Installing homebrew"
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	fi
+# Directory to look for bootstrap executables in
+BOOTSTRAP_D="${(%):-%x}.d"
 
-	echo "Setting iTerm preference folder"
-	defaults write com.googlecode.iterm2 PrefsCustomFolder "$XDG_CONFIG_HOME/iterm2"
+if [[ ! -d "$BOOTSTRAP_D" ]]; then
+    echo "Error: bootstrap directory '$BOOTSTRAP_D' not found" >&2
+    exit 1
 fi
+
+find -L "$BOOTSTRAP_D" -type f | sort | while IFS= read -r bootstrap; do
+    if [[ -x "$bootstrap" && ! "$bootstrap" =~ "##" && ! "$bootstrap" =~ "~$" ]]; then
+        if ! "$bootstrap"; then
+            echo "Error: bootstrap '$bootstrap' failed" >&2
+            exit 1
+        fi
+    fi
+done

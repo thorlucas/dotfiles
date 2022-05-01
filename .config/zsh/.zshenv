@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Set XDG Base Directories according to
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html
 
@@ -15,9 +17,14 @@ export -T XDG_CONFIG_DIRS xdg_config_dirs=(
 	/etc/xdg
 )
 
+# Brew
+
+export HOMEBREW_BUNDLE_FILE="$XDG_CONFIG_HOME/homebrew-bundle/Brewfile"
+
 # Preference variables
 
 export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
 export VISUAL="nvim"
 
 # Paths
