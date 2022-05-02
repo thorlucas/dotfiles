@@ -6,6 +6,9 @@ tap "homebrew/core"
 brew "yadm"
 brew "zsh-syntax-highlighting"
 brew "neovim", args: ["HEAD"]
+brew "neofetch"
+brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/skhd"
 
 cask "font-iosevka"
 cask "iterm2"
