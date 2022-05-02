@@ -1,5 +1,4 @@
 #!/bin/zsh
 
-echo "	iTerm2..."
 defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" 	-bool 	"true"
 defaults write com.googlecode.iterm2 "PrefsCustomFolder" 		-string "$XDG_CONFIG_HOME/iterm2"

@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# TODO: Maybe a more controlled condition here?
+# We could maybe ask the user if they want to install globally or not?
+# TODO: Also it could have just been out of whack for the setup...
+
+if [ ! "$ZDOTDIR" = "$HOME/.config/zsh" ]; then
+	if ! [ -f /etc/zshenv ] || ! grep -q "ZDOTDIR=" /etc/zshenv; then
+		echo "Updating '/etc/zshenv'..."
+		echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zshenv
+	else
+		echo "Warning: 'etc/zshenv' already exports '\$ZDOTDIR' but the environment is wrong!"
+	fi
+	source /etc/zshenv
+	zsh --login
+fi
